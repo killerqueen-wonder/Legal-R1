@@ -113,7 +113,7 @@ tmux_send_commands "retriever_filter8005" \
     "export HF_HUB_CACHE=/path/to/your/cache_dir" \
     "export TRANSFORMERS_OFFLINE=1" \
     "export HF_HUB_OFFLINE=1" \
-    "cd $PROJECT_ROOT" \
+    "cd $PROJECT_ROOT/RL_utils" \
     "python search_r1/search/async_retrieval_server.py \
         --port $RETRIEVER_PORT \
         --corpus_path './data/RAG/legal_corpus.jsonl' \
