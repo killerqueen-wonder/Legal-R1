@@ -41,7 +41,7 @@ The framework was comprehensively evaluated on two widely recognized Chinese leg
 | LegalOne | X | 8B | 41.02% | 43.79% | 35.84% |
 | Qwen3-8B (Vanilla) | X | 8B | 40.20% | 28.47% | 27.85% |
 
-To provide a granular understanding of our framework's capabilities, **Figure 3** breaks down the evaluation scores across LexEval's core cognitive dimensions. Legal-R1 demonstrates consistent dominance at the 8B parameter scale compared to other open-source legal-specific and RAG baselines. Particularly in knowledge-intensive (Know.) and understanding (Under.) dimensions, Legal-R1 achieves a steep performance leap, closely trailing or even matching much larger proprietary models like DeepSeek-V4-Flash and GPT-5.4-Mini. This fine-grained superiority highlights that actively planning evidence collection is far more effective than relying on a static parametric memory or a fixed one-shot retriever.
+**Figure 3** breaks down the performance across various legal cognitive dimensions to evaluate fine-grained capabilities. The results demonstrate that Legal-R1 consistently outperforms alternative legal-specific and RAG baselines, proving that active multi-turn evidence planning is far superior to static parametric memories or one-shot retrievers.
 
 <p align="center">
   <img src="images/per_detail1.png" alt="Model Performance Breakdown" width="750"><br>
@@ -53,7 +53,7 @@ To provide a granular understanding of our framework's capabilities, **Figure 3*
 * ⚙️ **Adaptive Efficiency (Pareto-Optimal Cost)**: The agent dynamically scales its computational overhead depending on the complexity of the inquiry. For simpler requests (Knowledge Retrieval or Understanding), the system limits tool utilization to an average of 1.2–1.7 turns. For advanced legal consultation, reasoning, or text generation tasks, it intelligently scales up to 3.1–4.3 turns to coordinate multi-hop information synthesis.
 * 🧩 **Orthogonal Optimization Benefits**: Ablation studies indicate that while standard legal post-training injections provide major domain alignment (+18.03 points), the final synergistic peak is uniquely unlocked by integrating active multi-stage agent planning combined with GRPO multi-tier trajectory rewards.
 
-The system's operational efficiency and underlying decision policy are quantitatively validated in **Figure 4**. Legal-R1 achieves a Pareto-optimal balance between legal grounding precision and computational overhead through its dynamic tool-use policy. For lower-complexity subtasks such as direct knowledge verification and linguistic understanding, the Lawyer Agent operates conservatively, limiting external queries to an average of 1.2–1.7 turns and relying primarily on its internal knowledge base to minimize latency. Conversely, when confronted with highly intricate legal scenarios—such as multi-hop reasoning, case judgment, and open-ended text generation—the agent autonomously scales its deliberation trajectory up to 3.1–4.3 turns. This flexible scaling behavior ensures rigorous evidence gathering without suffering from unnecessary computational costs on trivial inputs.
+**Figure 4** evaluates the system's operational efficiency and dynamic tool-use decision policy. The trend demonstrates that Legal-R1 successfully achieves a Pareto-optimal balance between performance and computational cost by adaptively scaling its retrieval turns based on task complexity.
 
 <p align="center">
   <img src="images/RAG_times.png" alt="Average Retrieval Turns Analysis" width="600"><br>
