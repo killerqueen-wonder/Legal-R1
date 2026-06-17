@@ -3,7 +3,20 @@
 ## 📖 Introduction
 **Legal-R1** is an agentic retrieval framework developed for evidence-based legal question answering. Traditional Retrieval-Augmented Generation (RAG) pipelines often rely on single-turn semantic matching, which falls short because legal systems demand verification based on authority, temporal validity, and outcome diversity. 
 
+<p align="center">
+  <img src="images/intro3.png" alt="Legal-R1 Motivation" width="550"><br>
+  <em>Figure 1: Motivation of Legal-R1. Legal-R1 replaces one-turn semantic matching with multi-turn evidence seeking over norms and cases.</em>
+</p>
+
 Legal-R1 reformulates legal question answering as an explicit problem of **evidence construction** rather than a simple database lookup. It decomposes the process into a multi-agent workflow where a post-trained **Lawyer Agent** serves as the central manager to autonomously plan multi-turn evidence seeking. It collaborates with a **Legal Assistant Agent** that conducts authority-aware and sentencing diversity-aware retrieval across heterogeneous normative legal and precedent corpora, and a **Judge Agent** that synthesizes the entire retrieval trajectory to formulate the final grounded judgment.
+
+### 🔄 Multi-Agent Workflow Architecture
+The workflow makes evidence collection explicit and encourages answers to be grounded in comprehensive, authoritative, and diverse legal evidence:
+
+<p align="center">
+  <img src="images/workflow4.png" alt="Legal-R1 Agentic Workflow" width="850"><br>
+  <em>Figure 2: Overview of the proposed agentic legal retrieval workflow.</em>
+</p>
 
 ---
 
@@ -28,10 +41,20 @@ The framework was comprehensively evaluated on two widely recognized Chinese leg
 | LegalOne | X | 8B | 41.02% | 43.79% | 35.84% |
 | Qwen3-8B (Vanilla) | X | 8B | 40.20% | 28.47% | 27.85% |
 
+<p align="center">
+  <img src="images/per_detail1.png" alt="Model Performance Breakdown" width="750"><br>
+  <em>Figure 3: Model Performance on Lexeval's Five Categories.</em>
+</p>
+
 ### 🏆 Core Findings
 * 🚀 **Unmatched Parameter Efficiency**: At a lightweight 8B parameter scale, Legal-R1 yields a top-tier average score of 60.28%. It significantly defeats the strong competitive RAG model, R-Search, by 14.69 points and outpaces the massive proprietary model GPT-5.4-Mini by 3.41 points.
 * ⚙️ **Adaptive Efficiency (Pareto-Optimal Cost)**: The agent dynamically scales its computational overhead depending on the complexity of the inquiry. For simpler requests (Knowledge Retrieval or Understanding), the system limits tool utilization to an average of 1.2–1.7 turns. For advanced legal consultation, reasoning, or text generation tasks, it intelligently scales up to 3.1–4.3 turns to coordinate multi-hop information synthesis.
 * 🧩 **Orthogonal Optimization Benefits**: Ablation studies indicate that while standard legal post-training injections provide major domain alignment (+18.03 points), the final synergistic peak is uniquely unlocked by integrating active multi-stage agent planning combined with GRPO multi-tier trajectory rewards.
+
+<p align="center">
+  <img src="images/RAG_times.png" alt="Average Retrieval Turns Analysis" width="600"><br>
+  <em>Figure 4: Average Retrieval Turn for Different Complexity Tasks on Lawbench and Lexeval Benchmark.</em>
+</p>
 
 ---
 
