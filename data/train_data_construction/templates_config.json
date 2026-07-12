@@ -1,0 +1,121 @@
+[
+  {
+    "format_id": "01",
+    "source_type": "Accusation Prediction判决预测",
+    "source_path": "YOUR_PATH\\Legal-R1\\data\\train_data_construction\\case.jsonl",
+    "description": "根据下列案件事实，提问指控被告人的罪名与相关法条是什么。你需要从参考材料中提取案件事实部分（包括犯罪行为经过、涉案数额或数量、是否退赃退赔、是否认罪认罚、是否初犯偶犯等量刑情节），构建为完整的问题表述。问题中不得出现判决结果、量刑结论等任何可能直接透露答案的信息，最后要提问被告人的罪名和相关法条是什么。答案部分从案例材料中提取判决罪名与相关法条，表述应当简洁明确，例如“危险驾驶罪,根据《刑法》第133条之一第一款（二）项。”。",
+    "synthesis_num": 1000,
+    "content_field": "contents",
+    "filter_path": "",
+    "filter_field": ""
+  },
+  {
+    "format_id": "02",
+    "source_type": "Article Prediction法条预测",
+    "source_path": "YOUR_PATH\\Legal-R1\\data\\train_data_construction\\case.jsonl",
+    "description": "根据下列案件事实，提问和案件相关的法律条文是哪些。你需要从参考材料中提取案件事实部分（包括犯罪行为经过、涉案数额或数量、是否退赃退赔、是否认罪认罚、是否初犯偶犯等量刑情节），构建为完整的问题表述。问题中不得出现判决结果、量刑结论等任何可能直接透露答案的信息，最后要提问与该案件相关的法律条文有哪些。答案部分从案例材料中提取和案件相关的法律条文，表述应当简洁明确，例如“相关法条为：《中华人民共和国侵权责任法》第十六条，《最高人民法院关于审理人身损害赔偿案件适用法律若干问题的解释》第十七条”。",
+    "synthesis_num": 800 ,
+    "content_field": "contents" 
+  },
+  {
+    "format_id": "03",
+    "source_type": "Article Recitation法条记忆",
+    "source_path": "YOUR_PATH\\Legal-R1\\data\\train_data_construction\\legal_corpus.jsonl",
+    "description": "你需要从材料中提取法条的所属法律和法条编号，提问法条内容是什么。答案部分是该法条的完整全文。",
+    "synthesis_num": 500,
+    "content_field": "content"
+  },
+  {
+    "format_id": "04",
+    "source_type": "Charge Prediction罪名预测",
+    "source_path": "YOUR_PATH\\Legal-R1\\data\\train_data_construction\\case.jsonl",
+    "description": "根据下列案件事实，提问被告的罪名是什么。你需要从参考材料中提取案件事实部分（包括犯罪行为经过、涉案数额或数量、是否退赃退赔、是否认罪认罚、是否初犯偶犯等量刑情节），构建为完整的问题表述。问题中不得出现判决结果、量刑结论等任何可能直接透露答案的信息，最后要提问被告的罪名是什么。答案部分从案例材料中提取被告的罪名，表述应当简洁明确，例如“罪名是：走私、贩卖、运输、制造毒品罪",
+    "synthesis_num": 500 ,
+    "content_field": "contents" 
+  },
+  {
+    "format_id": "05",
+    "source_type": "Compensation Calculation赔偿金额计算",
+    "source_path": "YOUR_PATH\\Legal-R1\\data\\train_data_construction\\civil_judgement_case.jsonl",
+    "description": "根据下列案件事实，提问某一被告的赔偿金额是多少。你需要从参考材料中提取某一被告的案件事实部分（包括犯罪行为经过、涉案数额或数量、是否退赃退赔等量刑情节），构建为完整的问题表述。注意，问题中必须包含足够的欠款、利息、价值等金额信息，使得最终的结果能够通过计算而得到。但问题中不得出现判决结果等任何可能直接透露答案的信息。答案部分从案例材料中提取该被告的赔偿金额。表述应当简洁明确，例如“金额是：120000元",
+    "synthesis_num": 500 ,
+    "content_field": "contents" 
+  },
+  {
+    "format_id": "06",
+    "source_type": "Cross-Examination Strategy Generation质证意见生成",
+    "source_path": "YOUR_PATH\\Legal-R1\\data\\train_data_construction\\Evidentiary_Challenge_Arguments.jsonl",
+    "description": "根据下列案件的庭审经过（原告和被告的诉称，辩称，提交证据），提问某一方的质证意见是什么。你需要从参考材料中提取庭审经过的诉称，辩称（原告被告的诉称辩称可以简化总结表达），双方的提交证据等部分，构建为完整的问题表述。问题中不得出现质证意见、判决结果、量刑结论等任何可能直接透露答案的信息。答案部分从案例材料中提取某一方的质证意见。注意：问题中必须包含某一方提出的详细各项证据，以及他想要用这些证据拟证明的诉称，再提问另一方的质证意见。另一方的质证意见必须是质疑，如果未质疑则跳过此条材料。",
+    "synthesis_num": 200 ,
+    "content_field": "contents" 
+  },
+  {
+    "format_id": "07",
+    "source_type": "Dispute Focus Identification争议焦点确定",
+    "source_path": "YOUR_PATH\\Legal-R1\\data\\train_data_construction\\civil_judgement_case.jsonl",
+    "description": "根据下列案件事实，提问该案件的争议焦点是什么。你需要从参考材料中提取某一被告的案件事实部分（包括犯罪行为经过、涉案数额或数量、是否退赃退赔等量刑情节），构建为完整的问题表述。问题中不得出现争议焦点、判决结果、量刑结论等任何可能直接透露答案的信息。答案部分是“争议焦点是：”拼接以下选项中的一个：[“损失赔偿数额认定”,“感情是否破裂”,“本金争议/借贷合意/书面协议or电子协议/本金（金额）”，“本金争议/借贷合意/书面协议or电子协议/借款的意思表示”，“是否存在劳动关系”，“责任认定”]。注意：问题的格式是给出案情经过，再提问争议焦点是什么。答案的格式是给出争议焦点。如果材料案件与争议焦点的列表不匹配，则跳过该条材料。",
+    "synthesis_num": 300 ,
+    "content_field": "contents" 
+  },
+  {
+    "format_id": "08",
+    "source_type": "Judgment Document Generation判决书结果生成",
+    "source_path": "YOUR_PATH\\Legal-R1\\data\\train_data_construction\\case.jsonl",
+    "description": "根据下列案件事实，提问该案件的判决结果是什么。你需要从参考材料中提取某一被告的完整案件事实部分（包括犯罪行为经过、涉案数额或数量、是否退赃退赔等量刑情节），构建为完整的问题表述。问题中不得出现判决结果、量刑结论等任何可能直接透露答案的信息。答案部分从案例材料中提取法院判定的判决结果（本院认为）。注意：问题的格式是给出案情经过，再提问裁判结果是什么。答案的格式是给出裁判结果（以“本院认为”开头）。如果材料是裁定书而不是判决书，则跳过该条材料。",
+    "synthesis_num": 800 ,
+    "content_field": "contents" 
+  },
+  {
+    "format_id": "09",
+    "source_type": "Judgment Document Proofreading法律文书校对",
+    "source_path": "YOUR_PATH\\Legal-R1\\data\\train_data_construction\\Document_Proofreading.json",
+    "description": "QA概述：给出一句有文法错误的法律文书片段，要求对该片段进行校对。QA合成方法：你需要从参考材料中的一句带有错误的句子放进问题，并且要求校对该句子。答案部分则是该句子的改正方法和修改后的句子。QA格式：问题的格式为给出一个病句，要求校对以上句子。答案的格式为病句应该如何修改，以及修改后的正确句子。",
+    "synthesis_num": 500 ,
+    "content_field": "source" ,
+    "filter_path": "YOUR_PATH\\Legal-R1\\data\\train_data_construction\\LawBench_2-1.json",
+    "filter_field": "question"
+  },
+  
+  {
+    "format_id": "18",
+    "source_type": "criminal_case_judgement刑期预测",
+    "source_path": "YOUR_PATH\\Legal-R1\\data\\train_data_construction\\criminal_judgment_case.jsonl",
+    "description": "QA概述：根据下列案件事实、罪名和相关刑法条文，提问法院最终判处的主刑刑期。你需要从参考材料中提取案件事实部分（包括犯罪行为经过、涉案数额或数量、是否退赃退赔、是否认罪认罚、是否初犯偶犯等量刑情节），构建为完整的问题表述。问题中不得出现判决结果、量刑结论等任何可能直接透露答案的信息。答案部分仅填写法院实际判决的主刑刑期，表述应当简洁明确，例如“有期徒刑三年”或“拘役六个月”。若存在缓刑，仅填写主刑期限，不包含缓刑期限。QA格式：问题的示例格式为“经查明，（案情经过，证据等）...，法院应判处的主刑刑期是多少？”。答案的示例格式为“有期徒刑七个月”。",
+    "synthesis_num": 1000,
+    "content_field": "contents"
+  },
+  {
+    "format_id": "19",
+    "source_type": "Procuratorial Document Generation判决书生成",
+    "source_path": "YOUR_PATH\\Legal-R1\\data\\train_data_construction\\criminal_judgment_case.jsonl",
+    "description": "QA概述：根据下列依法审查查明的案件事实、证据，提问法院的判决结果，以“本院认为”开头。你需要从参考材料中提取案件事实部分（包括犯罪行为经过、涉案数额或数量、是否退赃退赔、是否认罪认罚、是否初犯偶犯等量刑情节），构建为完整的问题表述。问题中不得出现判决结果、量刑结论等任何可能直接透露答案的信息。答案部分填写法院以“本院认为”开头的判决结果，包含判决罪名，判决依据，判决刑期和罚金等内容。QA合成方法：问题的内容是从参考材料中找到经审查查明的案情经过以及人证物证等证据，再提问以“本院认为”开头的判决结果是什么。答案的内容是从材料中提取的以“本院认为”开头的判决结果。QA格式：问题的格式为“经查明，（案情经过和证据）...给出以“本院认为”开头的判决结果。”答案的格式为判决结果。",
+    "synthesis_num": 1000,
+    "content_field": "contents"
+  }
+  ,
+  {
+    "format_id": "22",
+    "source_type": "Lawyer Document Generation合同生成",
+    "source_path": "YOUR_PATH\\Legal-R1\\data\\train_data_construction\\template_processed.jsonl",
+    "description": "QA概述：根据虚构的用户需求，要求生成某种法律文书或合同。Q合成方法：参考材料会指定某种法律文书，以及它的生成要点。你需要构造一个用户请求，描述某个需要用到该类文书的具体场景，最后要求生成一份该类型的文书。注意，Q的部分不能包含材料中的要点。A合成方法：根据构造的用户请求，以及材料中提到的合成要点，生成一篇对应的法律文书或合同。Q的示例格式：‘我有一间房子需要出租...（房屋和租金等信息），帮我写一份商品房租赁合同。’A的示例格式：‘（租赁合同文本）’",
+    "synthesis_num": 100,
+    "content_field": "contents"
+  }
+  ,
+  {
+    "format_id": "39",
+    "source_type": "涉毒案件关系理解",
+    "source_path": "YOUR_PATH\\Legal-R1\\data\\train_data_construction\\Drug-Related_Case.jsonl",
+    "description": "# Role\n你是一个专业的法律数据标注专家，擅长从法律文书中提取“主体-关系-客体”三元组，并将其转化为高质量的选择题形式。\n\n# Task\n请根据我提供的【新案例】，模仿【示例】的格式，生成一个包含“开放式可验证问题”和“标准答案”的 JSON 数据。\n\n# Rules & Constraints\n1. 关系列表限制：仅限使用以下四种关系：[贩卖（给人）, 贩卖（毒品）, 持有, 非法容留]。\n2. 三元组格式：必须严格遵循 (主体, 关系, 客体) 的形式。\n3. 选项设计逻辑：\n   - 生成 4 个选项（A, B, C, D）。\n   - 正确选项必须完整包含案例中所有符合【关系列表】的三元组，正确选项可以是多个。\n   - 干扰项应包含：逻辑颠倒、关系归类错误或信息遗漏。\n# 【示例】\n输入案例：湛江市麻章区人民检察院指控，被告人林某某为了赚取利润，承诺帮一名不认识名字的青年男子将十粒毒品（海洛因）放在其养猪场代为销售...（此处省略部分原示例）\n输出：{'Open-ended Verifiable Question':'请阅读以下选择题给出正确选项，不要解释原因。请只给出答案的序号。\n请根据关系列表从给定的输入中抽取所有关系三元组。关系列表有贩卖（给人），贩卖（毒品），持有，非法容留。湛江市麻章区人民检察院指控，被告人林某某为了赚取利润，承诺帮一名不认识名字的青年男子将十粒毒品（海洛因）放在其养猪场代为销售。2014年8月7日早上7时许，吸毒人员徐某某来到林某某的养猪场购买毒品，当两人完成交易时，被公安民警当场抓获，并从徐某某身上扣押到可疑毒品一粒和人民币50元，从林某某处扣押到人民币100元和可疑毒品九小粒。经鉴定，查获的可疑毒品一粒，净重0.07克，可疑毒品九粒，净重0.44克，均检见海洛因成分。选项如下:\nA:（林某某,非法容留,徐某某） \nB:（徐某某,贩卖（给人）,林某某） \nC:（林某某,贩卖（给人）,海洛因） \nD:（林某某,贩卖（毒品）,海洛因）,（林某某,贩卖（给人）,徐某某）','Ground-True Answer':'D'}",
+    "synthesis_num": 300,
+    "content_field": "contents"
+  },
+  {
+    "format_id": "45",
+    "source_type": "法条翻译",
+    "source_path": "YOUR_PATH\\Legal-R1\\data\\train_data_construction\\legal_corpus.jsonl",
+    "description": "你需要从材料中读取法条，在法条之前加上“请完成以下法律场景的翻译任务，直接给出翻译结果。\n请你将以下法条翻译为英文：”，存为问题。答案部分是该法条的英文翻译。注意，问题中的法条应该和最终的英文翻译对应。",
+    "synthesis_num": 500,
+    "content_field": "content"
+  }
+]
